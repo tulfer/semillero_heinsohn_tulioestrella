@@ -7,7 +7,7 @@ package com.hbt.semillero.entidad;
  * <b>Descripción:<b>Clase que determina la enumeracion para representar los
  * tipos de estados aceptados por un comic
  * 
- * @author ccastano
+ * @author ccastano - Tulio Estrella 2019
  * @version
  */
 public enum EstadoEnum {
