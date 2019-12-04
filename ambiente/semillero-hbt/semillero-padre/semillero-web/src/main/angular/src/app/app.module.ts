@@ -21,6 +21,7 @@ export { ResultadoDTO } from './semillero/dto/resultado.dto';
 
 import {EjemploService} from './semillero/services/ejemplo.service';
 import {AbstractService} from './semillero/services/template.service';
+import { MensajeDireccionComponent } from './semillero/componentes/mensajeDireccion/mensaje-direccion-component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {AbstractService} from './semillero/services/template.service';
     MenuComponent,
     BienvenidaComponent,
     CrearPersonaComponent,
-    GestionarComicComponent
+    GestionarComicComponent,
+    MensajeDireccionComponent
   ],
   imports: [
     BrowserModule,
