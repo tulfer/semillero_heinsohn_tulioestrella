@@ -11,6 +11,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import com.hbt.semillero.dto.PersonajeDTO;
+import com.hbt.semillero.dto.ResultadoDTO;
 import com.hbt.semillero.ejb.IInformacionPersonajesComicLocal;
 
 /**
@@ -36,12 +38,14 @@ public class InformacionPersonajesComicRest {
 	 * 
 	 * @return
 	 */
-	@GET
+	@POST
 	@Path("/create")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String crearPersonaje() {
-		informacionPersonajesComic.crearPersonaje();
-		return "Ejecuto Correctamente";
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ResultadoDTO crearPersonaje(PersonajeDTO personajeDTO) {
+		informacionPersonajesComic.crearPersonaje(personajeDTO);
+		ResultadoDTO resultadoDTO = new ResultadoDTO(Boolean.TRUE, "Personaje creado exitosamente");
+		return resultadoDTO;
 	}
 
 	/**
@@ -54,9 +58,13 @@ public class InformacionPersonajesComicRest {
 	@GET
 	@Path("/read")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String leerPersonaje() {
-		informacionPersonajesComic.leerPersonaje();
-		return "Ejecuto Correctamente";
+	public PersonajeDTO leerPersonaje(@QueryParam("idPersonaje") Long idPersonaje) {
+		if(idPersonaje != null) {
+			PersonajeDTO personajeDTO = informacionPersonajesComic.leerPersonaje(idPersonaje);
+			return personajeDTO;
+		}
+		
+		return null;
 	}
 
 	/**

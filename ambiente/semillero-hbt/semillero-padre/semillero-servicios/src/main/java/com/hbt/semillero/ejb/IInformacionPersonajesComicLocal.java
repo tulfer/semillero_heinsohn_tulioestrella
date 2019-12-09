@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import com.hbt.semillero.dto.PersonajeDTO;
+
 
 /**
  * Expone los métodos del EJB InformacionPersonajesComic
@@ -20,7 +22,7 @@ public interface IInformacionPersonajesComicLocal {
 	 * 
 	 * @author Tulio Estrella
 	 */
-	public void crearPersonaje();
+	public void crearPersonaje(PersonajeDTO personajeNuevo);
 
 	/**
 	 * 
@@ -28,7 +30,7 @@ public interface IInformacionPersonajesComicLocal {
 	 * 
 	 * @author Tulio Estrella
 	 */
-	public void leerPersonaje();
+	public PersonajeDTO leerPersonaje(Long idPersonaje);
 
 	/**
 	 * 
