@@ -58,7 +58,7 @@ public class GestionarRolesRest {
 	@GET
 	@Path("/read")
 	@Produces(MediaType.APPLICATION_JSON)
-	public RolDTO leerPersonaje(@QueryParam("idRol") Long idRol) {
+	public RolDTO leerRol(@QueryParam("idRol") Long idRol) {
 		if(idRol != null) {
 			RolDTO rolDTO = gestionarRoles.leerRol(idRol);
 			return rolDTO;
