@@ -1,0 +1,32 @@
+<div class="row" style="display: flex;">
+    <div class="col-md-12">
+        <button type="button" class="btn btn-danger" style="float: right" (click)="deleteComic(3)">Eliminar Comic</button>
+    </div>
+</div>
+<div class="row">
+    <div *ngIf="borrado" class="alert alert-success" role="alert">
+            <h2>Se ha eliminado el comic {{ borrado.nombre }}</h2>
+    </div>
+    <div *ngIf="mostrarMensaje" class="alert alert-danger" role="alert">
+            <h2>No hay comic con ese valor</h2>
+    </div>
+</div>
+<div class="row" style="display: flex;">
+    <div *ngFor="let comic of listaComic" class="col-sm-3" style="margin: 15px 10px">
+        <div class="card" style="width: 18rem;">
+            <img [src]="'assets/imagenes/'+comic.imagen" style="object-fit: cover;" height="200px" class="card-img-top">
+            <div class="card-body">
+            <h5 class="card-title">{{ comic.nombre }}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Editorial: </strong> {{ comic.editorial }}</li>
+            <li class="list-group-item"><strong>Fecha de venta: </strong>{{ comic.fechaVenta }}</li>
+            <li class="list-group-item"><strong>Autores: </strong>{{ comic.autores }}</li>
+            <li class="list-group-item"><strong>Tematica: </strong>{{ comic.tematica }}</li>
+            <li class="list-group-item">
+                <strong>A color: </strong><span *ngIf="comic.color">Si</span><span *ngIf="!comic.color">No</span>
+            </li>
+            </ul>
+        </div>
+    </div>
+</div>    

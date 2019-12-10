@@ -12,6 +12,8 @@ import { MenuComponent } from './semillero/componentes/menu/menu-component';
 import { BienvenidaComponent } from './semillero/componentes/home/bienvenida-component';
 import { CrearPersonaComponent } from './semillero/componentes/crearPersona/crear-persona-component';
 import { GestionarComicComponent } from './semillero/componentes/gestionarComic/gestionar-comic';
+import { MensajeDireccionComponent } from './semillero/componentes/mensajeDireccion/mensaje-direccion-component';
+import { ListaComicComponent } from './semillero/componentes/listaComic/lista-comic-component';
 
 // DTOs
 export { ComicDTO } from './semillero/dto/comic.dto';
@@ -21,7 +23,6 @@ export { ResultadoDTO } from './semillero/dto/resultado.dto';
 
 import {EjemploService} from './semillero/services/ejemplo.service';
 import {AbstractService} from './semillero/services/template.service';
-import { MensajeDireccionComponent } from './semillero/componentes/mensajeDireccion/mensaje-direccion-component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MensajeDireccionComponent } from './semillero/componentes/mensajeDirecc
     BienvenidaComponent,
     CrearPersonaComponent,
     GestionarComicComponent,
-    MensajeDireccionComponent
+    MensajeDireccionComponent,
+    ListaComicComponent
   ],
   imports: [
     BrowserModule,

@@ -28,7 +28,7 @@ export class ComicDTO {
     /**
     * Indicador de resultado.
     */
-    public coleccion: string;
+    public coleccion?: string;
 
     /**
     * Indicador de resultado.
@@ -63,7 +63,11 @@ export class ComicDTO {
     /**
     * Indicador de resultado.
     */
-    public cantidad: number;
+    public cantidad?: number;
+    /**
+    * Indicador de resultado.
+    */
+    public imagen?: string;
 
   
 }
