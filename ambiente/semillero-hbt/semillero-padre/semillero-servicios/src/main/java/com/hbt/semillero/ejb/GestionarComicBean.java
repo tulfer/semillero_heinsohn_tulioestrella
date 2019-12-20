@@ -3,6 +3,9 @@
  */
 package com.hbt.semillero.ejb;
 
+import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -179,7 +182,10 @@ public class GestionarComicBean implements IGestionarComicLocal {
 		personaComic.getIdComic().setId(personaComicDTO.getIdComic());
 		personaComic.setIdPersona(new Persona());
 		personaComic.getIdPersona().setId(personaComicDTO.getIdPersona());
-		personaComic.setFechaVenta(personaComicDTO.getFechaVenta());
+		
+		LocalDateTime fechaActual = LocalDateTime.now();   
+	    
+		personaComic.setFechaVenta(fechaActual);
 		return personaComic;
 	}
 

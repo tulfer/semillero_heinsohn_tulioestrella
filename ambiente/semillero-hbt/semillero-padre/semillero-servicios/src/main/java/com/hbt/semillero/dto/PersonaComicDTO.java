@@ -2,6 +2,7 @@ package com.hbt.semillero.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import com.hbt.semillero.entidad.Comic;
 import com.hbt.semillero.entidad.Persona;
@@ -16,7 +17,7 @@ public class PersonaComicDTO implements Serializable {
 	private Long id;
 	private Long idPersona;
 	private Long idComic;
-	private LocalDate fechaVenta;
+	private LocalDateTime fechaVenta;
 	public Long getId() {
 		return id;
 	}
@@ -35,10 +36,10 @@ public class PersonaComicDTO implements Serializable {
 	public void setIdComic(Long idComic) {
 		this.idComic = idComic;
 	}
-	public LocalDate getFechaVenta() {
+	public LocalDateTime getFechaVenta() {
 		return fechaVenta;
 	}
-	public void setFechaVenta(LocalDate fechaVenta) {
+	public void setFechaVenta(LocalDateTime fechaVenta) {
 		this.fechaVenta = fechaVenta;
 	}
 

@@ -2,6 +2,7 @@ package com.hbt.semillero.entidad;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -44,7 +45,7 @@ public class PersonaComic implements Serializable{
 	private Comic idComic;
 	
 	@Column(name = "PC_FECHA_VENTA")
-	private LocalDate fechaVenta;
+	private LocalDateTime fechaVenta;
 
 	public Long getId() {
 		return id;
@@ -70,11 +71,11 @@ public class PersonaComic implements Serializable{
 		this.idComic = idComic;
 	}
 
-	public LocalDate getFechaVenta() {
+	public LocalDateTime getFechaVenta() {
 		return fechaVenta;
 	}
 
-	public void setFechaVenta(LocalDate fechaVenta) {
+	public void setFechaVenta(LocalDateTime fechaVenta) {
 		this.fechaVenta = fechaVenta;
 	}
 	
