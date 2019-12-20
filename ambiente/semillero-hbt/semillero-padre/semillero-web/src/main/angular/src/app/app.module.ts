@@ -14,6 +14,7 @@ import { CrearPersonaComponent } from './semillero/componentes/crearPersona/crea
 import { GestionarComicComponent } from './semillero/componentes/gestionarComic/gestionar-comic';
 import { MensajeDireccionComponent } from './semillero/componentes/mensajeDireccion/mensaje-direccion-component';
 import { ListaComicComponent } from './semillero/componentes/listaComic/lista-comic-component';
+import { ComprarComicComponent } from './semillero/componentes/comprarComic/comprar-comic-component';
 
 // DTOs
 export { ComicDTO } from './semillero/dto/comic.dto';
@@ -32,7 +33,8 @@ import {AbstractService} from './semillero/services/template.service';
     CrearPersonaComponent,
     GestionarComicComponent,
     MensajeDireccionComponent,
-    ListaComicComponent
+    ListaComicComponent,
+    ComprarComicComponent
   ],
   imports: [
     BrowserModule,

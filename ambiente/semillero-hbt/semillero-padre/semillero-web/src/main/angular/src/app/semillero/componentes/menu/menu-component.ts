@@ -42,6 +42,14 @@ export class MenuComponent implements OnInit {
   public navegarCrearPersona(): void {
     this.router.navigate(['crear-persona']);
   }
+  
+  /**
+   * @description Metodo encargado de direccionar al componente de comprar comic
+   * @author Tulio Estrella <tulfer01@gmail.com>
+   */
+  public navegarComprarComic(): void {
+    this.router.navigate(['comprar-comic']);
+  }
 
   /**
    * @description Metodo encargado de direccionar al componente de gestionar comic
@@ -51,7 +59,4 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['bienvenida']);
   }
 
-  public navegarGestionarCompra(): void {
-    //WIP
-  }
 }

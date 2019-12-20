@@ -1,0 +1,48 @@
+
+<div class="container">
+    <form [formGroup]="comprarComicForm">
+        <h1>Comprar Comic</h1>
+        <hr>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="persona">Persona:</label>
+                    <select class="form-control" id="persona" formControlName="persona">
+                            <option *ngFor="let persona of personas" [value]="persona.id">{{ persona.nombre }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="comic">Comic:</label>
+                    <select class="form-control" id="comic" formControlName="comic">
+                        <option *ngFor="let comic of comics" [value]="comic.id">{{ comic.nombre }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+        <br>
+        <div class="row">
+            <div class="col-6">
+                <span></span>
+            </div>
+            <div class="col-6 text-right">
+                <button type="button" class="btn btn-primary" (click)="comprarComic()">Comprar</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div *ngIf="comprado" class="alert alert-success" role="alert">
+                    <h2>Compra Exitosa</h2>
+            </div>
+            <div *ngIf="noComprado" class="alert alert-danger" role="alert">
+                    <h2>Ocurrio un error al realizar la compra</h2>
+            </div>
+        </div>
+
+    </form>
+
+</div>
