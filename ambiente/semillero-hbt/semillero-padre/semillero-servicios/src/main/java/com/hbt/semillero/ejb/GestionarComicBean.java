@@ -17,6 +17,7 @@ import javax.persistence.PersistenceContext;
 import org.apache.log4j.Logger;
 
 import com.hbt.semillero.dto.ComicDTO;
+import com.hbt.semillero.dto.PersonaComicDTO;
 import com.hbt.semillero.entidad.Comic;
 
 /**
@@ -158,5 +159,11 @@ public class GestionarComicBean implements IGestionarComicLocal {
 		comic.setEstadoEnum(comicDTO.getEstadoEnum());
 		comic.setCantidad(comicDTO.getCantidad());
 		return comic;
+	}
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+	public void comprarComic(List<PersonaComicDTO> comicsComprados) {
+		logger.debug("Recibe lista de Comics comrpados por persona");
+		
 	}
 }

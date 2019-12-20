@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 import com.hbt.semillero.dto.ComicDTO;
+import com.hbt.semillero.dto.PersonaComicDTO;
 
 /**
  * Expone los métodos del EJB GestionarComic Las interfaces determinan una
@@ -65,4 +66,12 @@ public interface IGestionarComicLocal {
 	 * @return
 	 */
 	public List<ComicDTO> consultarComics();
+	
+	/**
+	 * 
+	 * Metodo encargado de recibir lista de comics comprados
+	 * 
+	 * @return
+	 */
+	public void comprarComic(List<PersonaComicDTO> comicsComprados);
 }
