@@ -15,6 +15,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import com.hbt.semillero.dto.ComicDTO;
+import com.hbt.semillero.dto.PersonaComicDTO;
 import com.hbt.semillero.dto.ResultadoDTO;
 import com.hbt.semillero.ejb.IGestionarComicLocal;
 
@@ -129,5 +130,22 @@ public class GestionarComicRest {
 			ComicDTO comicDTO = gestionarComicEJB.consultarComic(idComic.toString());
 
 		}
+	}
+	
+	/**
+	 * Recibe lista de personaComic de los comics comprados.
+	 * http://localhost:8085/semillero-servicios/rest/GestionarComic/comprar
+	 * @param persona
+	 * @return
+	 */
+	@POST
+	@Path("/comprar")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ResultadoDTO comprarComic(List<PersonaComicDTO> comicsComprados) {
+		gestionarComicEJB.comprarComic(comicsComprados);
+		ResultadoDTO resultadoDTO = new ResultadoDTO(Boolean.TRUE, "Compra Exitosa");
+		return resultadoDTO;
+		
 	}
 }

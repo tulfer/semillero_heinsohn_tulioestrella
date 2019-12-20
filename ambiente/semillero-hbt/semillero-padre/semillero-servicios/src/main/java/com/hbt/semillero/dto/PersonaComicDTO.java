@@ -14,8 +14,8 @@ public class PersonaComicDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
-	private Persona idPersona;
-	private Comic idComic;
+	private Long idPersona;
+	private Long idComic;
 	private LocalDate fechaVenta;
 	public Long getId() {
 		return id;
@@ -23,16 +23,16 @@ public class PersonaComicDTO implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Persona getIdPersona() {
+	public Long getIdPersona() {
 		return idPersona;
 	}
-	public void setIdPersona(Persona idPersona) {
+	public void setIdPersona(Long idPersona) {
 		this.idPersona = idPersona;
 	}
-	public Comic getIdComic() {
+	public Long getIdComic() {
 		return idComic;
 	}
-	public void setIdComic(Comic idComic) {
+	public void setIdComic(Long idComic) {
 		this.idComic = idComic;
 	}
 	public LocalDate getFechaVenta() {

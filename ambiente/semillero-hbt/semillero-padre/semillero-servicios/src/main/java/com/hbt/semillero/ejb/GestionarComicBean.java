@@ -19,6 +19,8 @@ import org.apache.log4j.Logger;
 import com.hbt.semillero.dto.ComicDTO;
 import com.hbt.semillero.dto.PersonaComicDTO;
 import com.hbt.semillero.entidad.Comic;
+import com.hbt.semillero.entidad.Persona;
+import com.hbt.semillero.entidad.PersonaComic;
 
 /**
  * <b>Descripción:<b> Clase que determina el bean para realizar las gestion de
@@ -160,10 +162,33 @@ public class GestionarComicBean implements IGestionarComicLocal {
 		comic.setCantidad(comicDTO.getCantidad());
 		return comic;
 	}
+	
+	/**
+	 * 
+	 * Metodo encargado de transformar un personaComicDTO a una personaComic
+	 * 
+	 * @param comic
+	 * @return
+	 */
+	private PersonaComic convertirPersonaComicDTOToPersonaComic(PersonaComicDTO personaComicDTO) {
+		PersonaComic personaComic = new PersonaComic();
+		if(personaComicDTO.getId()!=null) {
+			personaComic.setId(personaComicDTO.getId());
+		}
+		personaComic.setIdComic(new Comic());
+		personaComic.getIdComic().setId(personaComicDTO.getIdComic());
+		personaComic.setIdPersona(new Persona());
+		personaComic.getIdPersona().setId(personaComicDTO.getIdPersona());
+		personaComic.setFechaVenta(personaComicDTO.getFechaVenta());
+		return personaComic;
+	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public void comprarComic(List<PersonaComicDTO> comicsComprados) {
 		logger.debug("Recibe lista de Comics comrpados por persona");
-		
+		comicsComprados.forEach((personaComicDTO) -> {
+			PersonaComic personaComic = convertirPersonaComicDTOToPersonaComic(personaComicDTO);
+			em.persist(personaComic);
+		});
 	}
 }
