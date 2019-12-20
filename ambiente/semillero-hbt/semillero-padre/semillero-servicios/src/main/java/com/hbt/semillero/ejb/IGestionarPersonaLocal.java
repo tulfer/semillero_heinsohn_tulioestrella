@@ -1,5 +1,7 @@
 package com.hbt.semillero.ejb;
 
+import java.util.List;
+
 import javax.ejb.Local;
 
 import com.hbt.semillero.dto.PersonaDTO;
@@ -29,6 +31,14 @@ public interface IGestionarPersonaLocal {
 	 */
 	public PersonaDTO leerPersona(Long idPersona);
 
+	/**
+	 * 
+	 * Metodo encargado de retornar una lista de personas
+	 * 
+	 * @return
+	 */
+	public List<PersonaDTO> consultarPersonas();
+	
 	/**
 	 * 
 	 * Metodo encargado del update (del CRUD)

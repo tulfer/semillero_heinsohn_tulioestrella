@@ -1,5 +1,8 @@
 package com.hbt.semillero.ejb;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -10,7 +13,9 @@ import javax.persistence.PersistenceContext;
 
 import org.apache.log4j.Logger;
 
+import com.hbt.semillero.dto.ComicDTO;
 import com.hbt.semillero.dto.PersonaDTO;
+import com.hbt.semillero.entidad.Comic;
 import com.hbt.semillero.entidad.Persona;
 
 @Stateless
@@ -37,6 +42,22 @@ public class GestionarPersonaBean implements IGestionarPersonaLocal{
 	public PersonaDTO leerPersona(Long idPersona) {
 		logger.debug("Se ejecuta el read del CRUD");
 		return null;
+	}
+	
+	/**
+	 * 
+	 * @see com.hbt.semillero.ejb.IGestionarPersonas#consultarPersonas()
+	 */
+	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+	public List<PersonaDTO> consultarPersonas() {
+		logger.debug("Se ejecuta el metodo consultar Personas");
+		
+		List<PersonaDTO> resultadosPersonaDTO = new ArrayList<PersonaDTO>();
+		List<Persona> resultados = em.createQuery("select c from Persona c").getResultList();
+		for (Persona persona:resultados) {
+			resultadosPersonaDTO.add(convertirPersonaToPersonaDTO(persona));
+		}
+		return resultadosPersonaDTO;
 	}
 
 	@Override

@@ -1,12 +1,16 @@
 package com.hbt.semillero.rest;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.hbt.semillero.dto.ComicDTO;
 import com.hbt.semillero.dto.PersonaDTO;
 import com.hbt.semillero.dto.ResultadoDTO;
 import com.hbt.semillero.ejb.IGestionarPersonaLocal;
@@ -41,6 +45,21 @@ public class GestionarPersonaRest {
 		gestionarPersona.crearPersona(personaDTO);
 		ResultadoDTO resultadoDTO = new ResultadoDTO(Boolean.TRUE, "Persona creado exitosamente");
 		return resultadoDTO;
+	}
+	
+	/**
+	 * 
+	 * Metodo encargado de traer la informacion de todas las personas
+	 * http://localhost:8085/semillero-servicios/rest/GestionarPersona/consultarPersonas
+	 * 
+	 * @return
+	 */
+	@GET
+	@Path("/consultarPersonas")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<PersonaDTO> consultarPersonas() {
+		return gestionarPersona.consultarPersonas();
+
 	}
 	
 }
