@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injector } from '@angular/core';
 import { ComicDTO } from '../../dto/comic.dto';
+import { EjemploService } from '../../services/ejemplo.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 /**
  * @description Componente que muestra una lista de objetos comic (taller 2)
@@ -27,10 +29,12 @@ export class ListaComicComponent implements OnInit {
      */
     public mostrarMensaje : boolean;
 
+    public injector : Injector;
+    public http : HttpClient;
     /**
      * Constructor de la clase
      */
-    constructor() {
+    constructor(private comicService: EjemploService) {
         console.log("entro al constructor del componente lista comic");
     }
 
@@ -38,73 +42,81 @@ export class ListaComicComponent implements OnInit {
      * Evento angular que se ejecuta al iniciar el componente
      */
     ngOnInit(): void {
-        this.listaComic = [
-            {
-                id :  "1",
-                nombre :  "SpiderMan",
-                editorial :  "Marvel",
-                tematica :  "Super Heroe",
-                numeroPaginas :  25,
-                precio :  15.200,
-                autores :  "StanLee",
-                color :  true,
-                fechaVenta :  new Date("1993-02-23"),
-                estado :  "ACTIVO",
-                imagen : "spiderman.jpg"
-            },
-            {
-                id :  "2",
-                nombre :  "SuperMan",
-                editorial :  "DC Comics",
-                tematica :  "Super Heroe",
-                numeroPaginas :  32,
-                precio :  11.300,
-                autores :  "DC Comic",
-                color :  true,
-                fechaVenta :   new Date("1991-06-12"),
-                estado :  "ACTIVO",
-                imagen : "superman.jpg"
-            },
-            {
-                id :  "3",
-                nombre :  "Batman",
-                editorial :  "DC Comics",
-                tematica :  "Super Heroe",
-                numeroPaginas :  20,
-                precio :  10.500,
-                autores :  "DC Comic",
-                color :  true,
-                fechaVenta :   new Date("1998-04-15"),
-                estado :  "ACTIVO",
-                imagen : "batman.jpg"
-            },
-            {
-                id :  "4",
-                nombre :  "Hulk",
-                editorial :  "Marvel",
-                tematica :  "Super Heroe",
-                numeroPaginas :  15,
-                precio :  9.600,
-                autores :  "StanLee",
-                color :  true,
-                fechaVenta :   new Date("1992-04-12"),
-                estado :  "ACTIVO",
-                imagen : "hulk.jpg"
-            },
-            {
-                id :  "5",
-                nombre :  "IronMan",
-                editorial :  "Marvel",
-                tematica :  "Super Heroe",
-                numeroPaginas :  32,
-                precio :  16.100,
-                autores :  "StanLee",
-                color :  true,
-                fechaVenta :   new Date("2008-01-20"),
-                estado :  "ACTIVO",
-                imagen : "ironman.jpg"
-            }
-        ]
+        this.comicService
+        .consultarComics()
+        .subscribe((comics: ComicDTO[]) => {
+
+            this.listaComic = comics;
+
+        });
+        
+        // this.listaComic = [
+        //     {
+        //         id :  "1",
+        //         nombre :  "SpiderMan",
+        //         editorial :  "Marvel",
+        //         tematica :  "Super Heroe",
+        //         numeroPaginas :  25,
+        //         precio :  15.200,
+        //         autores :  "StanLee",
+        //         color :  true,
+        //         fechaVenta :  new Date("1993-02-23"),
+        //         estado :  "ACTIVO",
+        //         imagen : "spiderman.jpg"
+        //     },
+        //     {
+        //         id :  "2",
+        //         nombre :  "SuperMan",
+        //         editorial :  "DC Comics",
+        //         tematica :  "Super Heroe",
+        //         numeroPaginas :  32,
+        //         precio :  11.300,
+        //         autores :  "DC Comic",
+        //         color :  true,
+        //         fechaVenta :   new Date("1991-06-12"),
+        //         estado :  "ACTIVO",
+        //         imagen : "superman.jpg"
+        //     },
+        //     {
+        //         id :  "3",
+        //         nombre :  "Batman",
+        //         editorial :  "DC Comics",
+        //         tematica :  "Super Heroe",
+        //         numeroPaginas :  20,
+        //         precio :  10.500,
+        //         autores :  "DC Comic",
+        //         color :  true,
+        //         fechaVenta :   new Date("1998-04-15"),
+        //         estado :  "ACTIVO",
+        //         imagen : "batman.jpg"
+        //     },
+        //     {
+        //         id :  "4",
+        //         nombre :  "Hulk",
+        //         editorial :  "Marvel",
+        //         tematica :  "Super Heroe",
+        //         numeroPaginas :  15,
+        //         precio :  9.600,
+        //         autores :  "StanLee",
+        //         color :  true,
+        //         fechaVenta :   new Date("1992-04-12"),
+        //         estado :  "ACTIVO",
+        //         imagen : "hulk.jpg"
+        //     },
+        //     {
+        //         id :  "5",
+        //         nombre :  "IronMan",
+        //         editorial :  "Marvel",
+        //         tematica :  "Super Heroe",
+        //         numeroPaginas :  32,
+        //         precio :  16.100,
+        //         autores :  "StanLee",
+        //         color :  true,
+        //         fechaVenta :   new Date("2008-01-20"),
+        //         estado :  "ACTIVO",
+        //         imagen : "ironman.jpg"
+        //     }
+        // ]
         
     }
 

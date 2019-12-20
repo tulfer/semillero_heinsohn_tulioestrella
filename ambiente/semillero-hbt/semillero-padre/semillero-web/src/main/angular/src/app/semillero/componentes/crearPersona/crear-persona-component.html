@@ -1,1 +1,64 @@
 
+<div class="container">
+    <form [formGroup]="crearPersonaForm">
+        <h1>Crear Persona</h1>
+        <hr>
+
+        <div class="row">
+            <div class="col-6">
+                <label for="nombrePersona">Nombre:</label>
+                <input type="text" class="form-control" id="nombrePersona" formControlName="nombre"
+                    [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }" maxlength="50">
+                <div *ngIf="submitted && f.nombre.errors">
+                    <span class="text-danger" *ngIf="f.nombre.errors.required">Campo requerido.</span>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="tipoDocumento">Tipo Documento:</label>
+                    <select class="form-control" id="tipoDocumento" formControlName="tipoDocumento">
+                        <option value="C.C">CEDULA</option>
+                        <option value="T.I">TARJETA DE IDENTIDAD</option>
+                        <option value="E">CEDULA EXTRANGERIA</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            
+            <div class="col-6">
+                <label for="documento">Documento:</label>
+                <input type="text" class="form-control" id="documento" formControlName="documento">
+            </div>
+
+            <div class="col-6">
+                <label for="fechaNacimiento">Fecha Nacimiento:</label>
+                <input type="date" class="form-control" id="fechaNacimiento" formControlName="fechaNacimiento">
+            </div>
+
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="col-6">
+                <span></span>
+            </div>
+            <div class="col-6 text-right">
+                <button type="button" class="btn btn-primary" (click)="crearPersona()">Crear</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div *ngIf="creado" class="alert alert-success" role="alert">
+                    <h2>Se ha creado la persona correctamente</h2>
+            </div>
+            <div *ngIf="noCreado" class="alert alert-danger" role="alert">
+                    <h2>Ocurrio un error al crear la persona</h2>
+            </div>
+        </div>
+
+    </form>
+
+</div>

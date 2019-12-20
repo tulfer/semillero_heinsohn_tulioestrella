@@ -35,6 +35,13 @@ export class MenuComponent implements OnInit {
   public navegarGestionarComic(): void {
     this.router.navigate(['gestionar-comic']);
   }
+  /**
+   * @description Metodo encargado de direccionar al componente de crear persona
+   * @author Tulio Estrella <tulfer01@gmail.com>
+   */
+  public navegarCrearPersona(): void {
+    this.router.navigate(['crear-persona']);
+  }
 
   /**
    * @description Metodo encargado de direccionar al componente de gestionar comic

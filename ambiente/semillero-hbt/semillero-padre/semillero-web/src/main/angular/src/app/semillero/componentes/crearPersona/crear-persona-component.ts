@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ComicDTO } from '../../dto/comic.dto';
+import { PersonaDTO } from '../../dto/persona.dto';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { EjemploService } from '../../services/ejemplo.service';
 
 /**
  * @description La clase CrearPersonaComponent permite crear personas
@@ -11,93 +14,101 @@ import { ComicDTO } from '../../dto/comic.dto';
 })
 export class CrearPersonaComponent implements OnInit{
     
-    private nombreInstructorGlobalPrivado : string;
-    public nombreInstructorGlobalPublic : string;
+    /**
+     * Atributo que contiene los controles del formulario
+     */
+    public crearPersonaForm : FormGroup;
 
-    public listaApellidos : Array<any> = new Array<any>();
-    public listaNombres = null;
+    /**
+     * Atributo que contendra la informacion de la persona
+     */
+    public persona: PersonaDTO;
 
-    public comicDTO : ComicDTO;
+    public idPersona : number = 0;
 
-    ngOnInit() : void {
-        this.nombreInstructorGlobalPrivado = "Semillero2019";
-        this.inicializarComponente();
+    /**
+     * Atributo para saber si se creo exitosamente la persona
+     */
+    public creado : any;
 
+    /**
+     * Atributo para determina si ocurrio un error al crear la persona
+     */
+    public noCreado : any;
 
-        let nombreInstructor = "Diego Alvarez";
-        let nombreInstructorString : string = "Diego Alvarez string";
-        console.log("nombreInstructor: " + nombreInstructor);
-        console.log("nombreInstructorString: " + nombreInstructorString);
+    /**
+     * Atributo que indica si se envio a validar el formulario
+     */
+    public submitted : boolean;
 
-
-        let miVarible : any = {
-            id : 1,
-            nombre : "Carlos",
-            direccion : "Carrera 21 XXX",
-            colores : [1,2,3,4,5]
-        };
-        miVarible.genero = "Masculino";
-        delete miVarible.genero;
-
-        this.listaApellidos.push(miVarible);
-        
-
-        
-        //alert("Longitud de la lista:" + this.listaNombres.length);
-
-        let miVariable : number = 100.23;
-        let variableString : string  = 'semillero2019';
-
-        let miVariableBoolean : boolean = true;
-
-        let miMapa : Map<string,string>;
-        miMapa = new Map<string,string>();
-        
-        miMapa.set("1", "semillero");
-        miMapa.get("1");
-        let mifecha = new Date();
-        
-        console.log(mifecha);
-
-        let lista = this.listaApellidos;
-        for (let i = 0; i < lista.length; i++) {
-            const element = lista[i];
-            console.log(element);
-            
-        }
-
-        lista.forEach(element => {
-            console.log(element);
+    /**
+     * @description Este es el constructor del componente CrearPersonaComponent
+     * @author Tulio Estrella <tulfer01@gmail.com>
+     */
+    constructor(private comicService: EjemploService,
+        private fb : FormBuilder,
+        private router : Router) {
+        this.crearPersonaForm = this.fb.group({
+            nombre : [null, Validators.required],
+            tipoDocumento : [null],
+            documento : [null],
+            fechaNacimiento : [null]
         });
-
-        lista.map(objeto => {
-            console.log(objeto);
-        });
-
-        
-
     }
 
-    public inicializarComponente() : Array<string> {
-        let retorno : any;
-        let objeto = undefined;
-        if(objeto !== null && objeto !== undefined ){
-            console.log("No es nulo");
-        } else {
-            console.log("Si es nulo");
+    /**
+     * @description Evento angular que se ejecuta al invocar el componente
+     * @author Tulio Estrella <tulfer01@gmail.com>
+     */
+    ngOnInit(): void {
+        console.log("Ingreso al al evento oninit");
+        this.persona = new PersonaDTO();
+    }
+
+    /**
+     * @description Metodo que permite validar el formulario y crear una persona
+     */
+    public crearPersona() : void {
+        this.submitted = true;
+        if(this.crearPersonaForm.invalid) {
+            return;
         }
+        this.idPersona++;
+        this.persona = new PersonaDTO();
+        this.persona.nombre = this.crearPersonaForm.controls.nombre.value;
+        this.persona.tipoDocumento = this.crearPersonaForm.controls.tipoDocumento.value;
+        this.persona.documento = this.crearPersonaForm.controls.documento.value;
+        this.persona.fechaNacimiento = this.crearPersonaForm.controls.fechaNacimiento.value;
+        this.comicService.crearPersona(this.persona).subscribe(respuesta => {
+            console.log(respuesta);
+            if(respuesta.exitoso == true){
+                this.creado = true;
+                this.limpiarFormulario();
+            }else{
+                this.noCreado = true;
+            }
+            setTimeout(()=> {
+                //Se le asigna false a borrado para que no lo muestre.
+                this.creado = false;
+                //Se le asigna false a mostrarMensaje para que no lo muestre
+                this.noCreado = false;
+            }, 3000);
+        }); 
+    }
 
-        console.log(1 == 1);
-//        console.log("1" == 1);
-        console.log(1 === 1);
-  //      console.log("1" === 1);
+    private limpiarFormulario() : void {
+        this.submitted = false;
+        this.crearPersonaForm.controls.nombre.setValue(null);
+        this.crearPersonaForm.controls.tipoDocumento.setValue(null);
+        this.crearPersonaForm.controls.documento.setValue(null);
+        this.crearPersonaForm.controls.fechaNacimiento.setValue(null);
+    }
 
-        this.comicDTO = new ComicDTO();
-        this.comicDTO.autores = "Pablito";
-        this.comicDTO.fechaVenta = new Date();
-        console.log(this.comicDTO.autores);
-        
-        
-        return retorno;
+    /**
+     * @description Metodo que obtiene los controles y sus propiedades
+     * @author Tulio Estrella
+     */
+    get f() { 
+        return this.crearPersonaForm.controls;
     }
 }
